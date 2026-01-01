@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="300"
+      alignment="TOP_CENTER"
+      stylesheets="@styles.css"
+      fx:controller="com.kardan.Main">
+
+    <!-- Title Label -->
+    <Label text="Welcome to OpsMap!" id="title" />
+
+    <!-- Buttons Container -->
+    <VBox spacing="20" alignment="CENTER">
+        <Button text="Sign In" id="signIn" />
+        <Button text="Sign Up" id="signUp" />
+        <Button text="EXIT" id="exit" />
+    </VBox>
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30" />
+    </padding>
+
+</VBox>
