@@ -1,0 +1,87 @@
+.root {
+    /* Background image for the whole scene */
+    -fx-background-image: url("space.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#title{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 50px;
+}
+
+#signIn {
+    -fx-background-color: green;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 60px;
+    -fx-font-size: 20px;
+
+}
+
+#signUp {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-pref-width: 180px;
+    -fx-pref-height: 60px;
+    -fx-font-size: 20px;
+}
+#exit {
+    -fx-background-color: red;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-pref-width: 120px;
+    -fx-pref-height: 40px;
+    -fx-font-size: 18px;
+}
+
+#signIn:hover, #signUp:hover, #exit:hover {
+    -fx-background-color: #64b5f6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10,0,0,0);
+}
+
+#username{
+    -fx-pref-width: 800px;
+    -fx-min-width: 800px;
+    -fx-max-width: 800px;
+    -fx-pref-height: 40px;
+}
+
+#password{
+    -fx-pref-width: 800px;
+    -fx-min-width: 800px;
+    -fx-max-width: 800px;
+    -fx-pref-height: 40px;
+}
+
+#userlabel, #passlabel {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+#backBtn{
+     -fx-background-color: red;
+     -fx-text-fill: black;
+     -fx-font-weight: bold;
+     -fx-pref-width: 120px;
+     -fx-pref-height: 60px;
+     -fx-font-size: 20px;
+}
+
+#confirmBtn{
+     -fx-background-color: green;
+     -fx-text-fill: black;
+     -fx-font-weight: bold;
+     -fx-pref-width: 120px;
+     -fx-pref-height: 60px;
+     -fx-font-size: 20px;
+}
+
+#backBtn:hover, #confirmBtn:hover {
+    -fx-background-color: #64b5f6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10,0,0,0);
+}

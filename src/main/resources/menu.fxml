@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
+
+
+<VBox xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="300"
+      alignment="TOP_CENTER"
+      stylesheets="@menu.css"
+      fx:controller="com.kardan.MenuController">
+
+    <!-- Title Label -->
+    <Label text="Welcome to OpsMap!" id="title" />
+
+    <!-- Buttons Container -->
+    <VBox fx:id="buttonBox" spacing="20" alignment="CENTER">
+        <Button text="Sign In" fx:id="signIn" id="signIn" />
+        <Button text="Sign Up" fx:id="signUp" id="signUp" />
+        <Button text="EXIT" fx:id="exit" id="exit" />
+    </VBox>
+
+    <!-- TextBoxes-->
+    <VBox fx:id="loginBox" spacing="50" alignment="TOP_CENTER" visible="false">
+        <Label fx:id="errorMsg" text="" style="-fx-text-fill: red; -fx-font-size: 24px;" />
+
+        <VBox spacing="10" alignment="TOP_CENTER">
+            <Label text="Please enter your username" id="userlabel"/>
+            <TextField fx:id="username" promptText="Username" id="username"/>
+
+            <Label text="Please enter your password" id="passlabel"/>
+            <PasswordField fx:id="password" promptText="Password" id="password"/>
+        </VBox>
+
+        <HBox spacing="30" alignment="BOTTOM_CENTER">
+            <Button text="Back" fx:id="backBtn" id="backBtn"/>
+            <Button text="Confirm" fx:id="confirmBtn" id="confirmBtn"/>
+        </HBox>
+    </VBox>
+
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30" />
+    </padding>
+
+</VBox>
+
+
