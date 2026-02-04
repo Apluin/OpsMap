@@ -28,7 +28,7 @@
 
     <!-- TextBoxes-->
     <VBox fx:id="loginBox" spacing="50" alignment="TOP_CENTER" visible="false">
-        <Label fx:id="errorMsg" text="" style="-fx-text-fill: red; -fx-font-size: 24px;" />
+        <Label fx:id="errorMsg" text="" style="-fx-text-fill: red; -fx-font-size: 24px; -fx-font-weight: bold;" />
 
         <VBox spacing="10" alignment="TOP_CENTER">
             <Label text="Please enter your username" id="userlabel"/>

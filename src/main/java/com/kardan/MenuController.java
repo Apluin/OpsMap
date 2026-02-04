@@ -1,10 +1,15 @@
 package com.kardan;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MenuController {
+
+    private boolean isSignUpMode;
 
     @FXML private Button signIn;
     @FXML private Button signUp;
@@ -27,40 +32,56 @@ public class MenuController {
         loginBox.setManaged(false);
 
         exit.setOnAction(e -> System.exit(0));
-        signIn.setOnAction(e -> showLogin());
-        signUp.setOnAction(e -> showLogin());
+        signIn.setOnAction(e -> {
+            showLogin(); isSignUpMode = false;});
+        signUp.setOnAction(e -> {
+            showLogin(); isSignUpMode = true;});
 
         username.setOnKeyPressed(e -> {
             switch (e.getCode()) {
-                case DOWN -> password.requestFocus();
+                case DOWN , ENTER -> password.requestFocus();
             }
         });
-
         password.setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case UP -> username.requestFocus();
-                case DOWN -> backBtn.requestFocus();
+                case ENTER -> confirmBtn.requestFocus();
             }
         });
 
         backBtn.setOnAction(e -> {
+
             loginBox.setVisible(false);
             loginBox.setManaged(false);
+            username.clear();
+            password.clear();
+            errorMsg.setText("");
 
             buttonBox.setVisible(true);
             buttonBox.setManaged(true);
         });
 
         confirmBtn.setOnAction(e -> {
-            String user = username.getText().trim();
-            String pass = password.getText().trim();
+            String u = username.getText().trim();
+            String p = password.getText().trim();
 
-            if (user.isEmpty() || pass.isEmpty()) {
-                errorMsg.setText("Please fill all fields!");
+            if (u.isEmpty() || p.isEmpty()) {
+                errorMsg.setText("Fill all fields");
+                return;
+            }
+
+            if (isSignUpMode) {
+                signUpUser(u, HashUtil.hash(p));
+                goToMainView();
             } else {
-                errorMsg.setText("hello");
+                if (checkLogin(u, HashUtil.hash(p))) {
+                    goToMainView();
+                } else {
+                    errorMsg.setText("Wrong username or password");
+                }
             }
         });
+
     }
 
     private void showLogin() {
@@ -69,6 +90,46 @@ public class MenuController {
 
         loginBox.setVisible(true);
         loginBox.setManaged(true);
+    }
+
+    private void signUpUser(String user, String pass) {
+        String sql = "INSERT INTO users(username, password) VALUES(?, ?)";
+
+        try (var c = Database.connect();
+             var p = c.prepareStatement(sql)) {
+
+            p.setString(1, user);
+            p.setString(2, pass);
+            p.executeUpdate();
+
+            errorMsg.setText("Account created!");
+        } catch (Exception e) {
+            errorMsg.setText("Username already exists");
+        }
+    }
+
+    private boolean checkLogin(String user, String pass) {
+        String sql = "SELECT * FROM users WHERE username=? AND password=?";
+
+        try (var c = Database.connect();
+             var p = c.prepareStatement(sql)) {
+
+            p.setString(1, user);
+            p.setString(2, pass);
+
+            return p.executeQuery().next();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private void goToMainView(){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("/mainView.fxml"));
+            Stage stage = (Stage) confirmBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1000, 600);
+            stage.setScene(scene);
+        }catch (Exception e){e.printStackTrace();}
     }
 }
 

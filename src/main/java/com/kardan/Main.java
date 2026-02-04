@@ -12,7 +12,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
         Scene scene = new Scene(loader.load(), 1000, 600);
 
-        stage.setTitle("Entry Menu");
+        stage.setTitle("OPSMAP");
         stage.setScene(scene);
         stage.show();
     }
