@@ -1,5 +1,4 @@
 .root {
-    /* Background image for the whole scene */
     -fx-background-image: url("nature.jpg");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
@@ -84,4 +83,13 @@
 #backBtn:hover, #confirmBtn:hover {
     -fx-background-color: #64b5f6;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10,0,0,0);
+}
+
+/* Board Of Main View */
+#board {
+    -fx-background-color: grey;
+    -fx-background-image: url("map.jpg");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
 }

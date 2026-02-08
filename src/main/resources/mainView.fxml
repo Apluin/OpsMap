@@ -1,21 +1,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.shape.*?>
-
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@menu.css"
             fx:controller="com.kardan.MainController">
 
       <center>
-            <Pane fx:id="board" prefWidth="700" prefHeight="500"/>
+            <Pane fx:id="board" id="board" prefWidth="700" prefHeight="500"/>
       </center>
 
       <right>
             <ToolBar orientation="VERTICAL">
                   <ToggleButton fx:id="penBtn">
                         <graphic>
-                              <Label text="PEN"/>
+                              <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                    <image>
+                                          <Image url="@icons/pen.png"/>
+                                    </image>
+                              </ImageView>
                         </graphic>
                   </ToggleButton>
 
@@ -37,15 +43,42 @@
                         </graphic>
                   </ToggleButton>
 
-                  <ToggleButton fx:id="eraseBtn" text="Eraser"/>
+                  <ToggleButton fx:id="eraseBtn">
+                        <graphic>
+                              <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                    <image>
+                                          <Image url="@icons/eraser.png"/>
+                                    </image>
+                              </ImageView>
+                        </graphic>
+                  </ToggleButton>
+
                   <HBox spacing="8">
-                        <Button fx:id="clearBtn" text="Clear"/> <Button fx:id="undoBtn" text="Undo"/>
+                        <Button fx:id="clearBtn">
+                              <graphic>
+                                    <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                          <image>
+                                                <Image url="@icons/clear.png"/>
+                                          </image>
+                                    </ImageView>
+                              </graphic>
+                        </Button>
+                        <Button fx:id="undoBtn">
+                              <graphic>
+                                    <ImageView fitWidth="20" fitHeight="20" preserveRatio="true">
+                                          <image>
+                                                <Image url="@icons/undo.png"/>
+                                          </image>
+                                    </ImageView>
+                              </graphic>
+                        </Button>
                   </HBox>
+
                   <Separator/>
                   <Label text="Color"/>
                   <ColorPicker fx:id="colorPicker"/>
                   <Separator/>
-                  <Label text="Font Size"/>
+                  <Label text="Font Size:"/>
                   <Slider fx:id="strokeSlider" min="1" max="20" value="2" showTickLabels="true" showTickMarks="true"/>
 
             </ToolBar>

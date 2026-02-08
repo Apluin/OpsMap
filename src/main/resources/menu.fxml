@@ -16,17 +16,14 @@
       stylesheets="@menu.css"
       fx:controller="com.kardan.MenuController">
 
-    <!-- Title Label -->
     <Label text="Welcome to OpsMap!" id="title" />
 
-    <!-- Buttons Container -->
     <VBox fx:id="buttonBox" spacing="20" alignment="CENTER">
         <Button text="Sign In" fx:id="signIn" id="signIn" />
         <Button text="Sign Up" fx:id="signUp" id="signUp" />
         <Button text="EXIT" fx:id="exit" id="exit" />
     </VBox>
 
-    <!-- TextBoxes-->
     <VBox fx:id="loginBox" spacing="50" alignment="TOP_CENTER" visible="false">
         <Label fx:id="errorMsg" text="" style="-fx-text-fill: red; -fx-font-size: 24px; -fx-font-weight: bold;" />
 

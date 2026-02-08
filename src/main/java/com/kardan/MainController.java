@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import java.util.Stack;
 
-
 public class MainController {
 
     @FXML private Pane board;
@@ -16,7 +15,7 @@ public class MainController {
     @FXML private ColorPicker colorPicker;
     @FXML private Button clearBtn, undoBtn;
     @FXML private Slider strokeSlider;
-
+    @FXML private Button saveBtn;
 
     private Stack<Shape> undoStack = new Stack<>();
     private double startX, startY;
@@ -32,7 +31,7 @@ public class MainController {
         penBtn.setToggleGroup(tools);
         triangleBtn.setToggleGroup(tools);
 
-        // Mouse pressed: start shape or erase or pen
+        //  start shape or erase or pen
         board.setOnMousePressed(e -> {
             startX = e.getX();
             startY = e.getY();
@@ -46,7 +45,7 @@ public class MainController {
                 return;
             }
 
-            // PEN (freehand)
+            // Pen (freehand)
             if (penBtn.isSelected()) {
                 currentPolyline = new Polyline();
                 currentPolyline.setStroke(colorPicker.getValue());
@@ -99,13 +98,12 @@ public class MainController {
             }
         });
 
-        // Mouse dragged
+        // Continue drawing
         board.setOnMouseDragged(e -> {
-            // PEN: add points to polyline
+            // Pen: add points to polyline
             if (penBtn.isSelected()) {
                 if (currentPolyline != null) {
                     currentPolyline.getPoints().addAll(e.getX(), e.getY());
-                    currentPolyline.setStroke(colorPicker.getValue());
                 }
                 return;
             }
@@ -122,7 +120,7 @@ public class MainController {
                 r.setY(y);
                 r.setWidth(w);
                 r.setHeight(h);
-                r.setStroke(colorPicker.getValue());
+
             } else if (currentShape instanceof Ellipse) {
                 Ellipse ell = (Ellipse) currentShape;
                 double centerX = (startX + e.getX()) / 2.0;
@@ -133,18 +131,13 @@ public class MainController {
                 ell.setCenterY(centerY);
                 ell.setRadiusX(radiusX);
                 ell.setRadiusY(radiusY);
-                ell.setStroke(colorPicker.getValue());
+
             } else if (currentShape instanceof Polygon) {
                 Polygon poly = (Polygon) currentShape;
                 double baseY = e.getY();
                 double leftX = Math.min(startX, e.getX());
                 double rightX = Math.max(startX, e.getX());
-                poly.getPoints().setAll(
-                        startX, startY,
-                        leftX, baseY,
-                        rightX, baseY
-                );
-                poly.setStroke(colorPicker.getValue());
+                poly.getPoints().setAll(startX, startY, leftX, baseY, rightX, baseY);
             }
         });
 
