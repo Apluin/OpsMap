@@ -53,6 +53,9 @@
                         </graphic>
                   </ToggleButton>
 
+                  <ToggleButton fx:id="textBtn" text="Text"/>
+
+
                   <HBox spacing="8">
                         <Button fx:id="clearBtn">
                               <graphic>
@@ -80,7 +83,11 @@
                   <Separator/>
                   <Label text="Font Size:"/>
                   <Slider fx:id="strokeSlider" min="1" max="20" value="2" showTickLabels="true" showTickMarks="true"/>
-
+                  <Separator/>
+                  <VBox fx:id="onlineUsersBox" spacing="5" style="-fx-padding: 10;">
+                        <Label text="Online Users:" style="-fx-font-weight: bold;"/>
+                  </VBox>
             </ToolBar>
+
       </right>
 </BorderPane>

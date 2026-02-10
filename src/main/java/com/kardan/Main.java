@@ -10,12 +10,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
-        Scene scene = new Scene(loader.load(), 1000, 600);
+        Scene scene = new Scene(loader.load(), 1500, 800);
 
         stage.setTitle("OPSMAP");
         stage.setScene(scene);
         stage.show();
-        stage.setFullScreen(true);
     }
 
     public static void main(String[] args) {

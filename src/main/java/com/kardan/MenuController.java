@@ -71,8 +71,9 @@ public class MenuController {
             }
 
             if (isSignUpMode) {
-                signUpUser(u, HashUtil.hash(p));
-                goToMainView();
+                if (signUpUser(u, HashUtil.hash(p))) {
+                    goToMainView();
+                }
             } else {
                 if (checkLogin(u, HashUtil.hash(p))) {
                     goToMainView();
@@ -92,7 +93,7 @@ public class MenuController {
         loginBox.setManaged(true);
     }
 
-    private void signUpUser(String user, String pass) {
+    private boolean signUpUser(String user, String pass) {
         String sql = "INSERT INTO users(username, password) VALUES(?, ?)";
 
         try (var c = Database.connect();
@@ -101,10 +102,10 @@ public class MenuController {
             p.setString(1, user);
             p.setString(2, pass);
             p.executeUpdate();
-
-            errorMsg.setText("Account created!");
+            return true;
         } catch (Exception e) {
             errorMsg.setText("Username already exists");
+            return false;
         }
     }
 
@@ -127,7 +128,12 @@ public class MenuController {
         try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("/mainView.fxml"));
             Stage stage = (Stage) confirmBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1000, 600);
+            Scene scene = new Scene(loader.load(), 1500, 800);
+
+            MainController controller = loader.getController();
+            controller.setUsername(username.getText().trim());
+            controller.connect();
+
             stage.setScene(scene);
         }catch (Exception e){e.printStackTrace();}
     }
