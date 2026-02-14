@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MenuController {
 
     private boolean isSignUpMode;
@@ -135,7 +137,7 @@ public class MenuController {
             controller.connect();
 
             stage.setScene(scene);
-        }catch (Exception e){e.printStackTrace();}
+        }catch (IOException e){errorMsg.setText("Can not load main view!");}
     }
 }
 

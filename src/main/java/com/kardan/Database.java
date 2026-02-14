@@ -14,8 +14,7 @@ public class Database {
     }
 
     private static void initDB(Connection c) {
-         String sql =
-                "CREATE TABLE IF NOT EXISTS users (" +
+         String sql = "CREATE TABLE IF NOT EXISTS users (" +
                         "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "username TEXT UNIQUE, " +
                         "password TEXT" +

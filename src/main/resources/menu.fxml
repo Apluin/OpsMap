@@ -41,11 +41,6 @@
         </HBox>
     </VBox>
 
-
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30" />
-    </padding>
-
 </VBox>
 
 

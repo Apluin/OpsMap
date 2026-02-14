@@ -40,18 +40,9 @@
 
 #signIn:hover, #signUp:hover, #exit:hover {
     -fx-background-color: #64b5f6;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10,0,0,0);
 }
 
-#username{
-    -fx-pref-width: 800px;
-    -fx-min-width: 800px;
-    -fx-max-width: 800px;
-    -fx-pref-height: 40px;
-}
-
-#password{
-    -fx-pref-width: 800px;
+#username, #password{
     -fx-min-width: 800px;
     -fx-max-width: 800px;
     -fx-pref-height: 40px;
@@ -82,7 +73,6 @@
 
 #backBtn:hover, #confirmBtn:hover {
     -fx-background-color: #64b5f6;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10,0,0,0);
 }
 
 /* Board Of Main View */

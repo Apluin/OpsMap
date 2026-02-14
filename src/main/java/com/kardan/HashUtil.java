@@ -1,6 +1,7 @@
 package com.kardan;
 
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class HashUtil {
     public static String hash(String text){
@@ -12,6 +13,9 @@ public class HashUtil {
                 sb.append(String.format("%02x", b));
             }
             return sb.toString();
-        }catch (Exception e){throw new RuntimeException(e);}
+        }catch (NoSuchAlgorithmException e){
+            System.out.println("Algorithm not found!");
+            return "";
+        }
     }
 }

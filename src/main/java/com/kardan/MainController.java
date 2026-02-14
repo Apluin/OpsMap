@@ -10,13 +10,10 @@ import javafx.scene.shape.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import com.kardan.network.NetworkClient;
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
-//import java.util.List;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.UUID;
+import java.util.*;
 
 public class MainController {
     private NetworkClient net;
@@ -28,6 +25,8 @@ public class MainController {
     @FXML private Slider strokeSlider;
     @FXML private Button saveBtn;
     @FXML private VBox onlineUsersBox;
+    @FXML private BorderPane rootPane;
+
 
 
     private Stack<Shape> undoStack = new Stack<>();
@@ -41,10 +40,8 @@ public class MainController {
     }
 
     public void connect() {
-        net = new NetworkClient("localhost", 55555, username, this::onMessage);
+        net = new NetworkClient("localhost", 55555, username, this);
     }
-
-
 
     @FXML
     public void initialize() {
@@ -235,6 +232,16 @@ public class MainController {
                 sendAction("REMOVE", last);
             }
         });
+
+        Platform.runLater(() -> {
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setOnCloseRequest(e -> {
+                try {
+                    net.close();
+                } catch (Exception ignored) {}
+            });
+        });
+
     }
 
 
@@ -253,7 +260,7 @@ public class MainController {
     }
 
 
-    private void onMessage(String json) {
+    public void onMessage(String json) {
         Platform.runLater(() -> {
             try {
                 JSONObject obj = new JSONObject(json);
@@ -362,7 +369,7 @@ public class MainController {
                 if (ud != null) id = ud.toString();
             }
             if (id == null) return;
-            org.json.JSONObject rem = new org.json.JSONObject();
+            JSONObject rem = new JSONObject();
             rem.put("type", "REMOVE");
             rem.put("id", id);
             net.sendJson(rem.toString());

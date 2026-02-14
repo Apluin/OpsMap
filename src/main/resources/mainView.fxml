@@ -6,6 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
+            fx:id = "rootPane"
             stylesheets="@menu.css"
             fx:controller="com.kardan.MainController">
 
@@ -88,6 +89,5 @@
                         <Label text="Online Users:" style="-fx-font-weight: bold;"/>
                   </VBox>
             </ToolBar>
-
       </right>
 </BorderPane>
